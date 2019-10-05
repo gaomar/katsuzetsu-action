@@ -26,7 +26,7 @@ app.intent('StartIntent', async (conv) => {
   });
 
   // 滑舌チェック
-  app.intent('MainIntent', (conv, {any}) => {
+  app.intent('MainIntent', async (conv, {any}) => {
     const context = conv.contexts.get('game');
 
     var myURL = `${process.env.VUE_URL}/katsuzetsu`;
@@ -34,11 +34,13 @@ app.intent('StartIntent', async (conv) => {
     if (context.parameters.seikai === any) {
       conv.contexts.delete('game');
       conv.ask(`おめでとう！！凄く滑舌よかったですよ。　${context.parameters.yomi}　と言っているのがはっきり聞き取れました。続けて滑舌チェックをしますか？`);
-
       myURL = `${process.env.VUE_URL}/congratulation`
+
+      await Util.sendNotify(`おめでとう！バッチリ「${context.parameters.seikai}」と聞き取れたよ！`);
 
     } else {
       conv.ask(`すいません。滑舌が悪くて聞き取れませんでした。もう一度試してみましょう。`);
+      await Util.sendNotify('滑舌が悪いので練習しましょう！');
 
     }
 
