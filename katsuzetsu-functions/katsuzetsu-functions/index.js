@@ -54,7 +54,7 @@ app.intent('StartIntent', async (conv) => {
   });
 
   // 起動時
-  app.intent('welcome', (conv) => {
+  app.intent('Default Welcome Intent', (conv) => {
     conv.ask('こんにちは。滑舌チェックをしましょう。スタートボタンを押してください。');
     
     conv.ask(new HtmlResponse({
