@@ -1,7 +1,6 @@
 .DS_Store
 katsuzetsu-app/node_modules
 katsuzetsu-app/package-lock.json
-katsuzetsu-app/dist
 
 katsuzetsu-functions/bin
 katsuzetsu-functions/obj
